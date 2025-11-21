@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+
+    <!-- Responsive viewport -->
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+    <!-- SEO & App Description -->
+    <meta name="description"
+          content="A high-performance BIM viewer supporting IFC and Fragment files with selection, hover, object browser, ghost mode, measurement tools, and clipping planes. Built on ThatOpen Engine Components." />
+
+    <!-- Branding -->
+    <title>BIM Viewer</title>
+    <link rel="icon" type="image/x-icon"
+          href="https://thatopen.github.io/engine_components/resources/favicon.ico" />
+
+    <!-- Icons (Material Icons) -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+    <!-- App Bundle -->
+    <script type="module" crossorigin src="assets/index.js"></script>
+
+    <!-- Optional: PWA setup (if needed later)
+    <link rel="manifest" href="manifest.webmanifest">
+    -->
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        overflow: hidden;
+    }
+
+    .left-panel {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 300px;
+        height: 100vh;
+        background: #1e1e1e;
+        color: white;
+        padding: 1rem;
+        box-sizing: border-box;
+        overflow-y: auto;
+        z-index: 10;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    #container {
+        position: absolute;
+        top: 0;
+        left: 300px;
+        right: 300px;
+        width: calc(100vw - 600px);
+        height: 100vh;
+        background: #222;
+        transition: all 0.3s ease-in-out;
+    }
+
+    #container.full {
+        left: 0;
+        right: 0;
+        width: 100vw;
+    }
+
+    .right-panel {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 300px;
+        height: 100vh;
+        background: #1e1e1e;
+        color: white;
+        padding: 1rem;
+        box-sizing: border-box;
+        overflow-y: auto;
+        z-index: 10;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .options-menu {
+        position: absolute;
+        min-width: unset;
+        top: 5px;
+        right: 10px;
+        max-height: calc(100vh - 10px);
+    }
+
+    .phone-menu-toggler {
+        visibility: hidden;
+    }
+
+    @media (max-width: 480px) {
+        .options-menu {
+            visibility: hidden;
+            bottom: 5px;
+            left: 5px;
+        }
+
+        .options-menu-visible {
+            visibility: visible;
+        }
+
+        .phone-menu-toggler {
+            visibility: visible;
+            position: fixed;
+            top: 5px;
+            right: 5px;
+        }
+    }
+
+    /* Left + Right panels */
+    #object-explorer {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 300px;
+        background: #1e1e1e;
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        transition: transform 0.3s ease-in-out;
+        z-index: 100;
+    }
+
+    #object-property {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 300px;
+        background: #1e1e1e;
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        transition: transform 0.3s ease-in-out;
+        z-index: 100;
+    }
+
+    #object-explorer {
+        left: 0;
+        transform: translateX(0);
+    }
+
+    #object-explorer.collapsed {
+        transform: translateX(-100%);
+    }
+
+    #object-property {
+        right: 0;
+        transform: translateX(0);
+    }
+
+    #object-property.collapsed {
+        transform: translateX(100%);
+    }
+
+    /* Close button inside panel */
+    .close-btn {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        width: 1.8rem;
+        height: 1.8rem;
+        border-radius: 50%;
+        background: #f5f5f5;
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Close button inside panel */
+    .close-btn-right {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 1.8rem;
+        height: 1.8rem;
+        border-radius: 50%;
+        background: #f5f5f5;
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .close-btn:hover,
+    .close-btn-right:hover {
+        background: #6a0dad;
+        /* dark violet */
+        border-color: #6a0dad;
+        color: white;
+        box-shadow: 0 0 8px rgba(106, 13, 173, 0.5);
+        transition: all 0.2s ease-in-out;
+    }
+
+    /* Reopen button for both sides */
+    .reopen-btn {
+        position: absolute;
+        top: 10px;
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        width: 2.2rem;
+        height: 2.2rem;
+        font-size: 1.2rem;
+        cursor: pointer;
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+        transition: opacity 0.2s;
+        z-index: 200;
+    }
+
+    .reopen-btn:hover {
+        background: #6a0dad;
+        /* dark violet */
+        border-color: #6a0dad;
+        color: white;
+        box-shadow: 0 0 8px rgba(106, 13, 173, 0.5);
+        transition: all 0.2s ease-in-out;
+    }
+
+    .reopen-btn.right {
+        right: 10px;
+    }
+
+    .reopen-btn.left {
+        left: 10px;
+    }
+
+    #object-explorer:not(.collapsed)~.reopen-btn.left {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    #object-property:not(.collapsed)~.reopen-btn.right {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    #loading-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        font-size: 1.2rem;
+        z-index: 100;
+    }
+
+    #toggle-button {
+        position: absolute;
+        top: 5px;
+        right: 6px;
+        z-index: 1000;
+        padding: 6px 6px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+        background: #fff;
+        transition: background 0.2s, transform 0.1s;
+    }
+
+    #toggle-button:hover {
+        background: #6a0dad;
+        /* dark violet */
+        border-color: #6a0dad;
+        color: white;
+        box-shadow: 0 0 8px rgba(106, 13, 173, 0.5);
+        transition: all 0.2s ease-in-out;
+    }
+
+    #toggle-button:active {
+        transform: scale(0.97);
+    }
+
+    #panel-container {
+        position: absolute;
+        top: 10px;
+        right: 0;
+        z-index: 999;
+    }
+
+    #toggle-button1 {
+        position: absolute;
+        top: 5px;
+        right: 240px;
+        z-index: 1000;
+        padding: 6px 6px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+        background: #fff;
+        transition: background 0.2s, transform 0.1s;
+    }
+
+    #toggle-button1:hover {
+        background: #6a0dad;
+        /* dark violet */
+        border-color: #6a0dad;
+        color: white;
+        box-shadow: 0 0 8px rgba(106, 13, 173, 0.5);
+        transition: all 0.2s ease-in-out;
+    }
+
+    #toggle-button1:active {
+        transform: scale(0.97);
+    }
+
+    #panel-container1 {
+        position: absolute;
+        top: 10px;
+        right: 250px;
+        z-index: 999;
+    }
+
+    .direction-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin: 0.5rem 0;
+    }
+
+    /* make each button perfectly square */
+    .direction-buttons bim-button {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        text-align: center;
+        font-weight: 500;
+        border-radius: 0.5rem;
+        /* optional – soften corners */
+        transition: background 0.2s, color 0.2s;
+    }
+
+    /* active state (from your radio-style behavior) */
+    .direction-buttons bim-button.active {
+        background: #007bff;
+        color: white;
+        border-color: #007bff;
+    }
+
+    .bottom-row {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
+        gap: 0.75rem;
+        margin-top: 1rem;
+        flex-wrap: wrap;
+        /* ✅ allow wrapping when space is tight */
+        width: 100%;
+        /* ✅ make it stretch instead of fixed 300px */
+        box-sizing: border-box;
+    }
+
+    .bottom-row bim-dropdown {
+        flex: 1 1 12rem;
+        /* grows/shrinks, min width 12rem */
+        min-width: 12rem;
+        max-width: 20rem;
+    }
+
+    .bottom-row bim-dropdown::part(select) {
+        width: 100%;
+    }
+
+    .coordinate-inputs {
+        display: flex;
+        flex-direction: column;
+        /* label on top */
+        gap: 0.25rem;
+        min-width: 4rem;
+        flex-shrink: 0;
+        width: 6rem;
+    }
+
+    .coordinate-inputs label {
+        font-weight: 500;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+</style>
+
+<body>
+    <div id="object-explorer" class="left-panel">
+    </div>
+    <div id="object-property" class="right-panel">
+    </div>
+    <div id="container"></div>
+</body>
+
+</html>
