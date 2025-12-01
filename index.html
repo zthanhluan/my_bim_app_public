@@ -2,31 +2,20 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-
-    <!-- Responsive viewport -->
+    <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <!-- SEO & App Description -->
-    <meta name="description"
-          content="A high-performance BIM viewer supporting IFC and Fragment files with selection, hover, object browser, ghost mode, measurement tools, and clipping planes. Built on ThatOpen Engine Components." />
-
-    <!-- Branding -->
-    <title>BIM Viewer</title>
-    <link rel="icon" type="image/x-icon"
-          href="https://thatopen.github.io/engine_components/resources/favicon.ico" />
-
-    <!-- Icons (Material Icons) -->
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-
-    <!-- App Bundle -->
-    <script type="module" crossorigin src="assets/index.js"></script>
-
-    <!-- Optional: PWA setup (if needed later)
-    <link rel="manifest" href="manifest.webmanifest">
-    -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="icon" type="image/x-icon" href="https://thatopen.github.io/engine_components/resources/favicon.ico">
+    <title>BIM</title>
+    <!-- CSRFトークンが未設定のパターンがない場合はif判定は不要-->
+    <th:block th:if="${_csrf}">
+        <meta name="_csrf_header" th:content="${_csrf.headerName}">
+        <meta name="_csrf" th:content="${_csrf.token}">
+    </th:block>
+  <script type="module" crossorigin src="assets/index.js"></script>
 </head>
 <style>
     body {
@@ -386,6 +375,8 @@
 </style>
 
 <body>
+    <input type="hidden" th:value="${generalFileId}" id="general-file-id" />
+    <input type="hidden" th:value="${url}" id="url-download-file" />
     <div id="object-explorer" class="left-panel">
     </div>
     <div id="object-property" class="right-panel">
