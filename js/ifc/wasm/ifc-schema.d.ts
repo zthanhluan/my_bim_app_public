@@ -1,3 +1,5 @@
+export declare const IFCWELLKNOWNTEXTLITERAL = 2149462589;
+export declare const IFCSTRIPPEDOPTIONAL = 1805707277;
 export declare const IFCURIREFERENCE = 950732822;
 export declare const IFCTIME = 4075327185;
 export declare const IFCTEMPERATURERATEOFCHANGEMEASURE = 1209108979;
@@ -240,9 +242,13 @@ export declare const IFCOPENCROSSPROFILEDEF = 182550632;
 export declare const IFCLINEARPLACEMENT = 388784114;
 export declare const IFCALIGNMENTHORIZONTALSEGMENT = 536804194;
 export declare const IFCALIGNMENTCANTSEGMENT = 3752311538;
+export declare const IFCWELLKNOWNTEXT = 1175146630;
 export declare const IFCTEXTURECOORDINATEINDICESWITHVOIDS = 1010789467;
 export declare const IFCTEXTURECOORDINATEINDICES = 222769930;
+export declare const IFCRIGIDOPERATION = 1794013214;
 export declare const IFCQUANTITYNUMBER = 2691318326;
+export declare const IFCMAPCONVERSIONSCALED = 4105526436;
+export declare const IFCGEOGRAPHICCRS = 917726184;
 export declare const IFCALIGNMENTVERTICALSEGMENT = 3633395639;
 export declare const IFCALIGNMENTPARAMETERSEGMENT = 2879124712;
 export declare const IFCCONTROLLER = 25142252;
@@ -21761,6 +21767,12 @@ export declare namespace IFC4X3 {
         type: number;
         name: string;
     }
+    class IfcStrippedOptional {
+        type: number;
+        name: string;
+        value: boolean;
+        constructor(v: any);
+    }
     class IfcTemperatureGradientMeasure extends NumberHandle {
         type: number;
         name: string;
@@ -21866,6 +21878,12 @@ export declare namespace IFC4X3 {
     class IfcWarpingMomentMeasure extends NumberHandle {
         type: number;
         name: string;
+    }
+    class IfcWellKnownTextLiteral {
+        value: string;
+        type: number;
+        name: string;
+        constructor(value: string);
     }
     class IfcActionRequestTypeEnum {
         static EMAIL: any;
@@ -22014,21 +22032,22 @@ export declare namespace IFC4X3 {
         static NOTDEFINED: any;
     }
     class IfcAnnotationTypeEnum {
-        static ASBUILTAREA: any;
-        static ASBUILTLINE: any;
-        static ASBUILTPOINT: any;
-        static ASSUMEDAREA: any;
-        static ASSUMEDLINE: any;
-        static ASSUMEDPOINT: any;
-        static NON_PHYSICAL_SIGNAL: any;
-        static SUPERELEVATIONEVENT: any;
-        static WIDTHEVENT: any;
+        static CONTOURLINE: any;
+        static DIMENSION: any;
+        static ISOBAR: any;
+        static ISOLUX: any;
+        static ISOTHERM: any;
+        static LEADER: any;
+        static SURVEY: any;
+        static SYMBOL: any;
+        static TEXT: any;
         static USERDEFINED: any;
         static NOTDEFINED: any;
     }
     class IfcArithmeticOperatorEnum {
         static ADD: any;
         static DIVIDE: any;
+        static MODULO: any;
         static MULTIPLY: any;
         static SUBTRACT: any;
     }
@@ -22089,13 +22108,6 @@ export declare namespace IFC4X3 {
         static SPANDREL: any;
         static T_BEAM: any;
         static USERDEFINED: any;
-        static NOTDEFINED: any;
-    }
-    class IfcBearingTypeDisplacementEnum {
-        static FIXED_MOVEMENT: any;
-        static FREE_MOVEMENT: any;
-        static GUIDED_LONGITUDINAL: any;
-        static GUIDED_TRANSVERSAL: any;
         static NOTDEFINED: any;
     }
     class IfcBearingTypeEnum {
@@ -22172,17 +22184,16 @@ export declare namespace IFC4X3 {
         static COMPLEX: any;
         static ELEMENT: any;
         static PARTIAL: any;
+        static PROVISIONFORSPACE: any;
+        static PROVISIONFORVOID: any;
         static USERDEFINED: any;
         static NOTDEFINED: any;
     }
     class IfcBuildingSystemTypeEnum {
-        static EROSIONPREVENTION: any;
         static FENESTRATION: any;
         static FOUNDATION: any;
         static LOADBEARING: any;
         static OUTERSHELL: any;
-        static PRESTRESSING: any;
-        static REINFORCING: any;
         static SHADING: any;
         static TRANSPORT: any;
         static USERDEFINED: any;
@@ -22214,6 +22225,7 @@ export declare namespace IFC4X3 {
         static CONNECTOR: any;
         static CROSS: any;
         static JUNCTION: any;
+        static REDUCER: any;
         static TEE: any;
         static TRANSITION: any;
         static USERDEFINED: any;
@@ -22713,37 +22725,6 @@ export declare namespace IFC4X3 {
         static RIGHT: any;
         static NOTDEFINED: any;
     }
-    class IfcDoorStyleConstructionEnum {
-        static ALUMINIUM: any;
-        static ALUMINIUM_PLASTIC: any;
-        static ALUMINIUM_WOOD: any;
-        static HIGH_GRADE_STEEL: any;
-        static PLASTIC: any;
-        static STEEL: any;
-        static WOOD: any;
-        static USERDEFINED: any;
-        static NOTDEFINED: any;
-    }
-    class IfcDoorStyleOperationEnum {
-        static DOUBLE_DOOR_DOUBLE_SWING: any;
-        static DOUBLE_DOOR_FOLDING: any;
-        static DOUBLE_DOOR_SINGLE_SWING: any;
-        static DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT: any;
-        static DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT: any;
-        static DOUBLE_DOOR_SLIDING: any;
-        static DOUBLE_SWING_LEFT: any;
-        static DOUBLE_SWING_RIGHT: any;
-        static FOLDING_TO_LEFT: any;
-        static FOLDING_TO_RIGHT: any;
-        static REVOLVING: any;
-        static ROLLINGUP: any;
-        static SINGLE_SWING_LEFT: any;
-        static SINGLE_SWING_RIGHT: any;
-        static SLIDING_TO_LEFT: any;
-        static SLIDING_TO_RIGHT: any;
-        static USERDEFINED: any;
-        static NOTDEFINED: any;
-    }
     class IfcDoorTypeEnum {
         static BOOM_BARRIER: any;
         static DOOR: any;
@@ -22754,13 +22735,13 @@ export declare namespace IFC4X3 {
         static NOTDEFINED: any;
     }
     class IfcDoorTypeOperationEnum {
-        static DOUBLE_PANEL_DOUBLE_SWING: any;
-        static DOUBLE_PANEL_FOLDING: any;
-        static DOUBLE_PANEL_LIFTING_VERTICAL: any;
-        static DOUBLE_PANEL_SINGLE_SWING: any;
-        static DOUBLE_PANEL_SINGLE_SWING_OPPOSITE_LEFT: any;
-        static DOUBLE_PANEL_SINGLE_SWING_OPPOSITE_RIGHT: any;
-        static DOUBLE_PANEL_SLIDING: any;
+        static DOUBLE_DOOR_DOUBLE_SWING: any;
+        static DOUBLE_DOOR_FOLDING: any;
+        static DOUBLE_DOOR_LIFTING_VERTICAL: any;
+        static DOUBLE_DOOR_SINGLE_SWING: any;
+        static DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT: any;
+        static DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT: any;
+        static DOUBLE_DOOR_SLIDING: any;
         static DOUBLE_SWING_LEFT: any;
         static DOUBLE_SWING_RIGHT: any;
         static FOLDING_TO_LEFT: any;
@@ -22768,7 +22749,7 @@ export declare namespace IFC4X3 {
         static LIFTING_HORIZONTAL: any;
         static LIFTING_VERTICAL_LEFT: any;
         static LIFTING_VERTICAL_RIGHT: any;
-        static REVOLVING_HORIZONTAL: any;
+        static REVOLVING: any;
         static REVOLVING_VERTICAL: any;
         static ROLLINGUP: any;
         static SINGLE_SWING_LEFT: any;
@@ -23191,6 +23172,10 @@ export declare namespace IFC4X3 {
         static USERDEFINED: any;
         static NOTDEFINED: any;
     }
+    class IfcKerbTypeEnum {
+        static USERDEFINED: any;
+        static NOTDEFINED: any;
+    }
     class IfcKnotType {
         static PIECEWISE_BEZIER_KNOTS: any;
         static QUASI_UNIFORM_KNOTS: any;
@@ -23425,16 +23410,6 @@ export declare namespace IFC4X3 {
         static USERDEFINED: any;
         static NOTDEFINED: any;
     }
-    class IfcObjectTypeEnum {
-        static ACTOR: any;
-        static CONTROL: any;
-        static GROUP: any;
-        static PROCESS: any;
-        static PRODUCT: any;
-        static PROJECT: any;
-        static RESOURCE: any;
-        static NOTDEFINED: any;
-    }
     class IfcObjectiveEnum {
         static CODECOMPLIANCE: any;
         static CODEWAIVER: any;
@@ -23659,14 +23634,15 @@ export declare namespace IFC4X3 {
         static NOTDEFINED: any;
     }
     class IfcRailwayPartTypeEnum {
-        static DILATATIONSUPERSTRUCTURE: any;
-        static LINESIDESTRUCTURE: any;
-        static LINESIDESTRUCTUREPART: any;
-        static PLAINTRACKSUPERSTRUCTURE: any;
-        static SUPERSTRUCTURE: any;
-        static TRACKSTRUCTURE: any;
-        static TRACKSTRUCTUREPART: any;
-        static TURNOUTSUPERSTRUCTURE: any;
+        static ABOVETRACK: any;
+        static DILATIONTRACK: any;
+        static LINESIDE: any;
+        static LINESIDEPART: any;
+        static PLAINTRACK: any;
+        static SUBSTRUCTURE: any;
+        static TRACK: any;
+        static TRACKPART: any;
+        static TURNOUTTRACK: any;
         static USERDEFINED: any;
         static NOTDEFINED: any;
     }
@@ -23709,6 +23685,8 @@ export declare namespace IFC4X3 {
         static POSITION: any;
         static REFERENCEMARKER: any;
         static STATION: any;
+        static SUPERELEVATIONEVENT: any;
+        static WIDTHEVENT: any;
         static USERDEFINED: any;
         static NOTDEFINED: any;
     }
@@ -24469,29 +24447,6 @@ export declare namespace IFC4X3 {
         static TOP: any;
         static NOTDEFINED: any;
     }
-    class IfcWindowStyleConstructionEnum {
-        static ALUMINIUM: any;
-        static ALUMINIUM_WOOD: any;
-        static HIGH_GRADE_STEEL: any;
-        static OTHER_CONSTRUCTION: any;
-        static PLASTIC: any;
-        static STEEL: any;
-        static WOOD: any;
-        static NOTDEFINED: any;
-    }
-    class IfcWindowStyleOperationEnum {
-        static DOUBLE_PANEL_HORIZONTAL: any;
-        static DOUBLE_PANEL_VERTICAL: any;
-        static SINGLE_PANEL: any;
-        static TRIPLE_PANEL_BOTTOM: any;
-        static TRIPLE_PANEL_HORIZONTAL: any;
-        static TRIPLE_PANEL_LEFT: any;
-        static TRIPLE_PANEL_RIGHT: any;
-        static TRIPLE_PANEL_TOP: any;
-        static TRIPLE_PANEL_VERTICAL: any;
-        static USERDEFINED: any;
-        static NOTDEFINED: any;
-    }
     class IfcWindowTypeEnum {
         static LIGHTDOME: any;
         static SKYLIGHT: any;
@@ -24545,7 +24500,7 @@ export declare namespace IFC4X3 {
     type IfcCoordinateReferenceSystemSelect = (Handle<IfcCoordinateReferenceSystem> | IfcCoordinateReferenceSystem) | (Handle<IfcGeometricRepresentationContext> | IfcGeometricRepresentationContext);
     type IfcCsgSelect = (Handle<IfcBooleanResult> | IfcBooleanResult) | (Handle<IfcCsgPrimitive3D> | IfcCsgPrimitive3D);
     type IfcCurveFontOrScaledCurveFontSelect = (Handle<IfcCurveStyleFontAndScaling> | IfcCurveStyleFontAndScaling) | IfcCurveStyleFontSelect;
-    type IfcCurveMeasureSelect = IfcNonNegativeLengthMeasure | IfcParameterValue;
+    type IfcCurveMeasureSelect = IfcLengthMeasure | IfcParameterValue;
     type IfcCurveOnSurface = (Handle<IfcCompositeCurveOnSurface> | IfcCompositeCurveOnSurface) | (Handle<IfcPcurve> | IfcPcurve) | (Handle<IfcSurfaceCurve> | IfcSurfaceCurve);
     type IfcCurveOrEdgeCurve = (Handle<IfcBoundedCurve> | IfcBoundedCurve) | (Handle<IfcEdgeCurve> | IfcEdgeCurve);
     type IfcCurveStyleFontSelect = (Handle<IfcCurveStyleFont> | IfcCurveStyleFont) | (Handle<IfcPreDefinedCurveFont> | IfcPreDefinedCurveFont);
@@ -24577,7 +24532,7 @@ export declare namespace IFC4X3 {
     type IfcRotationalStiffnessSelect = IfcBoolean | IfcRotationalStiffnessMeasure;
     type IfcSegmentIndexSelect = IfcArcIndex | IfcLineIndex;
     type IfcShell = (Handle<IfcClosedShell> | IfcClosedShell) | (Handle<IfcOpenShell> | IfcOpenShell);
-    type IfcSimpleValue = IfcBinary | IfcBoolean | IfcDate | IfcDateTime | IfcDuration | IfcIdentifier | IfcInteger | IfcLabel | IfcLogical | IfcPositiveInteger | IfcReal | IfcText | IfcTime | IfcTimeStamp;
+    type IfcSimpleValue = IfcBinary | IfcBoolean | IfcDate | IfcDateTime | IfcDuration | IfcIdentifier | IfcInteger | IfcLabel | IfcLogical | IfcPositiveInteger | IfcReal | IfcText | IfcTime | IfcTimeStamp | IfcURIReference;
     type IfcSizeSelect = IfcDescriptiveMeasure | IfcLengthMeasure | IfcNormalisedRatioMeasure | IfcPositiveLengthMeasure | IfcPositiveRatioMeasure | IfcRatioMeasure;
     type IfcSolidOrShell = (Handle<IfcClosedShell> | IfcClosedShell) | (Handle<IfcSolidModel> | IfcSolidModel);
     type IfcSpaceBoundarySelect = (Handle<IfcExternalSpatialElement> | IfcExternalSpatialElement) | (Handle<IfcSpace> | IfcSpace);
@@ -24760,13 +24715,13 @@ export declare namespace IFC4X3 {
         constructor(SourceCRS: IfcCoordinateReferenceSystemSelect, TargetCRS: (Handle<IfcCoordinateReferenceSystem> | IfcCoordinateReferenceSystem));
     }
     class IfcCoordinateReferenceSystem extends IfcLineObject {
-        Name: IfcLabel;
+        Name: IfcLabel | null;
         Description: IfcText | null;
         GeodeticDatum: IfcIdentifier | null;
-        VerticalDatum: IfcIdentifier | null;
         type: number;
         HasCoordinateOperation: (Handle<IfcCoordinateOperation> | IfcCoordinateOperation)[] | null;
-        constructor(Name: IfcLabel, Description: IfcText | null, GeodeticDatum: IfcIdentifier | null, VerticalDatum: IfcIdentifier | null);
+        WellKnownText: (Handle<IfcWellKnownText> | IfcWellKnownText)[] | null;
+        constructor(Name: IfcLabel | null, Description: IfcText | null, GeodeticDatum: IfcIdentifier | null);
     }
     class IfcCostValue extends IfcAppliedValue {
         Name: IfcLabel | null;
@@ -24840,6 +24795,16 @@ export declare namespace IFC4X3 {
         type: number;
         constructor(Location: IfcURIReference | null, Identification: IfcIdentifier | null, Name: IfcLabel | null);
     }
+    class IfcGeographicCRS extends IfcCoordinateReferenceSystem {
+        Name: IfcLabel | null;
+        Description: IfcText | null;
+        GeodeticDatum: IfcIdentifier | null;
+        PrimeMeridian: IfcIdentifier | null;
+        AngleUnit: (Handle<IfcNamedUnit> | IfcNamedUnit) | null;
+        HeightUnit: (Handle<IfcNamedUnit> | IfcNamedUnit) | null;
+        type: number;
+        constructor(Name: IfcLabel | null, Description: IfcText | null, GeodeticDatum: IfcIdentifier | null, PrimeMeridian: IfcIdentifier | null, AngleUnit: (Handle<IfcNamedUnit> | IfcNamedUnit) | null, HeightUnit: (Handle<IfcNamedUnit> | IfcNamedUnit) | null);
+    }
     class IfcGridAxis extends IfcLineObject {
         AxisTag: IfcLabel | null;
         AxisCurve: (Handle<IfcCurve> | IfcCurve);
@@ -24902,10 +24867,23 @@ export declare namespace IFC4X3 {
         XAxisAbscissa: IfcReal | null;
         XAxisOrdinate: IfcReal | null;
         Scale: IfcReal | null;
-        ScaleY: IfcReal | null;
-        ScaleZ: IfcReal | null;
         type: number;
-        constructor(SourceCRS: IfcCoordinateReferenceSystemSelect, TargetCRS: (Handle<IfcCoordinateReferenceSystem> | IfcCoordinateReferenceSystem), Eastings: IfcLengthMeasure, Northings: IfcLengthMeasure, OrthogonalHeight: IfcLengthMeasure, XAxisAbscissa: IfcReal | null, XAxisOrdinate: IfcReal | null, Scale: IfcReal | null, ScaleY: IfcReal | null, ScaleZ: IfcReal | null);
+        constructor(SourceCRS: IfcCoordinateReferenceSystemSelect, TargetCRS: (Handle<IfcCoordinateReferenceSystem> | IfcCoordinateReferenceSystem), Eastings: IfcLengthMeasure, Northings: IfcLengthMeasure, OrthogonalHeight: IfcLengthMeasure, XAxisAbscissa: IfcReal | null, XAxisOrdinate: IfcReal | null, Scale: IfcReal | null);
+    }
+    class IfcMapConversionScaled extends IfcMapConversion {
+        SourceCRS: IfcCoordinateReferenceSystemSelect;
+        TargetCRS: (Handle<IfcCoordinateReferenceSystem> | IfcCoordinateReferenceSystem);
+        Eastings: IfcLengthMeasure;
+        Northings: IfcLengthMeasure;
+        OrthogonalHeight: IfcLengthMeasure;
+        XAxisAbscissa: IfcReal | null;
+        XAxisOrdinate: IfcReal | null;
+        Scale: IfcReal | null;
+        FactorX: IfcReal;
+        FactorY: IfcReal;
+        FactorZ: IfcReal;
+        type: number;
+        constructor(SourceCRS: IfcCoordinateReferenceSystemSelect, TargetCRS: (Handle<IfcCoordinateReferenceSystem> | IfcCoordinateReferenceSystem), Eastings: IfcLengthMeasure, Northings: IfcLengthMeasure, OrthogonalHeight: IfcLengthMeasure, XAxisAbscissa: IfcReal | null, XAxisOrdinate: IfcReal | null, Scale: IfcReal | null, FactorX: IfcReal, FactorY: IfcReal, FactorZ: IfcReal);
     }
     class IfcMaterialClassificationRelationship extends IfcLineObject {
         MaterialClassifications: IfcClassificationSelect[];
@@ -25164,7 +25142,7 @@ export declare namespace IFC4X3 {
         constructor(ProfileType: IfcProfileTypeEnum, ProfileName: IfcLabel | null);
     }
     class IfcProjectedCRS extends IfcCoordinateReferenceSystem {
-        Name: IfcLabel;
+        Name: IfcLabel | null;
         Description: IfcText | null;
         GeodeticDatum: IfcIdentifier | null;
         VerticalDatum: IfcIdentifier | null;
@@ -25172,7 +25150,7 @@ export declare namespace IFC4X3 {
         MapZone: IfcIdentifier | null;
         MapUnit: (Handle<IfcNamedUnit> | IfcNamedUnit) | null;
         type: number;
-        constructor(Name: IfcLabel, Description: IfcText | null, GeodeticDatum: IfcIdentifier | null, VerticalDatum: IfcIdentifier | null, MapProjection: IfcIdentifier | null, MapZone: IfcIdentifier | null, MapUnit: (Handle<IfcNamedUnit> | IfcNamedUnit) | null);
+        constructor(Name: IfcLabel | null, Description: IfcText | null, GeodeticDatum: IfcIdentifier | null, VerticalDatum: IfcIdentifier | null, MapProjection: IfcIdentifier | null, MapZone: IfcIdentifier | null, MapUnit: (Handle<IfcNamedUnit> | IfcNamedUnit) | null);
     }
     class IfcPropertyAbstraction extends IfcLineObject {
         type: number;
@@ -25307,6 +25285,15 @@ export declare namespace IFC4X3 {
         Description: IfcText | null;
         type: number;
         constructor(Name: IfcLabel | null, Description: IfcText | null);
+    }
+    class IfcRigidOperation extends IfcCoordinateOperation {
+        SourceCRS: IfcCoordinateReferenceSystemSelect;
+        TargetCRS: (Handle<IfcCoordinateReferenceSystem> | IfcCoordinateReferenceSystem);
+        FirstCoordinate: IfcMeasureValue;
+        SecondCoordinate: IfcMeasureValue;
+        Height: IfcLengthMeasure | null;
+        type: number;
+        constructor(SourceCRS: IfcCoordinateReferenceSystemSelect, TargetCRS: (Handle<IfcCoordinateReferenceSystem> | IfcCoordinateReferenceSystem), FirstCoordinate: IfcMeasureValue, SecondCoordinate: IfcMeasureValue, Height: IfcLengthMeasure | null);
     }
     class IfcRoot extends IfcLineObject {
         GlobalId: IfcGloballyUniqueId;
@@ -25674,6 +25661,12 @@ export declare namespace IFC4X3 {
         OffsetDistances: IfcLengthMeasure[];
         type: number;
         constructor(IntersectingAxes: (Handle<IfcGridAxis> | IfcGridAxis)[], OffsetDistances: IfcLengthMeasure[]);
+    }
+    class IfcWellKnownText extends IfcLineObject {
+        WellKnownText: IfcWellKnownTextLiteral;
+        CoordinateReferenceSystem: (Handle<IfcCoordinateReferenceSystem> | IfcCoordinateReferenceSystem);
+        type: number;
+        constructor(WellKnownText: IfcWellKnownTextLiteral, CoordinateReferenceSystem: (Handle<IfcCoordinateReferenceSystem> | IfcCoordinateReferenceSystem));
     }
     class IfcWorkTime extends IfcSchedulingTime {
         Name: IfcLabel | null;
@@ -27735,9 +27728,9 @@ export declare namespace IFC4X3 {
         Name: IfcLabel | null;
         Description: IfcText | null;
         RelatedObjects: (Handle<IfcObjectDefinition> | IfcObjectDefinition)[];
-        RelatedObjectsType: IfcObjectTypeEnum | null;
+        RelatedObjectsType: IfcStrippedOptional | null;
         type: number;
-        constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, RelatedObjects: (Handle<IfcObjectDefinition> | IfcObjectDefinition)[], RelatedObjectsType: IfcObjectTypeEnum | null);
+        constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, RelatedObjects: (Handle<IfcObjectDefinition> | IfcObjectDefinition)[], RelatedObjectsType: IfcStrippedOptional | null);
     }
     class IfcRelAssignsToActor extends IfcRelAssigns {
         GlobalId: IfcGloballyUniqueId;
@@ -27745,11 +27738,11 @@ export declare namespace IFC4X3 {
         Name: IfcLabel | null;
         Description: IfcText | null;
         RelatedObjects: (Handle<IfcObjectDefinition> | IfcObjectDefinition)[];
-        RelatedObjectsType: IfcObjectTypeEnum | null;
+        RelatedObjectsType: IfcStrippedOptional | null;
         RelatingActor: (Handle<IfcActor> | IfcActor);
         ActingRole: (Handle<IfcActorRole> | IfcActorRole) | null;
         type: number;
-        constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, RelatedObjects: (Handle<IfcObjectDefinition> | IfcObjectDefinition)[], RelatedObjectsType: IfcObjectTypeEnum | null, RelatingActor: (Handle<IfcActor> | IfcActor), ActingRole: (Handle<IfcActorRole> | IfcActorRole) | null);
+        constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, RelatedObjects: (Handle<IfcObjectDefinition> | IfcObjectDefinition)[], RelatedObjectsType: IfcStrippedOptional | null, RelatingActor: (Handle<IfcActor> | IfcActor), ActingRole: (Handle<IfcActorRole> | IfcActorRole) | null);
     }
     class IfcRelAssignsToControl extends IfcRelAssigns {
         GlobalId: IfcGloballyUniqueId;
@@ -27757,10 +27750,10 @@ export declare namespace IFC4X3 {
         Name: IfcLabel | null;
         Description: IfcText | null;
         RelatedObjects: (Handle<IfcObjectDefinition> | IfcObjectDefinition)[];
-        RelatedObjectsType: IfcObjectTypeEnum | null;
+        RelatedObjectsType: IfcStrippedOptional | null;
         RelatingControl: (Handle<IfcControl> | IfcControl);
         type: number;
-        constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, RelatedObjects: (Handle<IfcObjectDefinition> | IfcObjectDefinition)[], RelatedObjectsType: IfcObjectTypeEnum | null, RelatingControl: (Handle<IfcControl> | IfcControl));
+        constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, RelatedObjects: (Handle<IfcObjectDefinition> | IfcObjectDefinition)[], RelatedObjectsType: IfcStrippedOptional | null, RelatingControl: (Handle<IfcControl> | IfcControl));
     }
     class IfcRelAssignsToGroup extends IfcRelAssigns {
         GlobalId: IfcGloballyUniqueId;
@@ -27768,10 +27761,10 @@ export declare namespace IFC4X3 {
         Name: IfcLabel | null;
         Description: IfcText | null;
         RelatedObjects: (Handle<IfcObjectDefinition> | IfcObjectDefinition)[];
-        RelatedObjectsType: IfcObjectTypeEnum | null;
+        RelatedObjectsType: IfcStrippedOptional | null;
         RelatingGroup: (Handle<IfcGroup> | IfcGroup);
         type: number;
-        constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, RelatedObjects: (Handle<IfcObjectDefinition> | IfcObjectDefinition)[], RelatedObjectsType: IfcObjectTypeEnum | null, RelatingGroup: (Handle<IfcGroup> | IfcGroup));
+        constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, RelatedObjects: (Handle<IfcObjectDefinition> | IfcObjectDefinition)[], RelatedObjectsType: IfcStrippedOptional | null, RelatingGroup: (Handle<IfcGroup> | IfcGroup));
     }
     class IfcRelAssignsToGroupByFactor extends IfcRelAssignsToGroup {
         GlobalId: IfcGloballyUniqueId;
@@ -27779,11 +27772,11 @@ export declare namespace IFC4X3 {
         Name: IfcLabel | null;
         Description: IfcText | null;
         RelatedObjects: (Handle<IfcObjectDefinition> | IfcObjectDefinition)[];
-        RelatedObjectsType: IfcObjectTypeEnum | null;
+        RelatedObjectsType: IfcStrippedOptional | null;
         RelatingGroup: (Handle<IfcGroup> | IfcGroup);
         Factor: IfcRatioMeasure;
         type: number;
-        constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, RelatedObjects: (Handle<IfcObjectDefinition> | IfcObjectDefinition)[], RelatedObjectsType: IfcObjectTypeEnum | null, RelatingGroup: (Handle<IfcGroup> | IfcGroup), Factor: IfcRatioMeasure);
+        constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, RelatedObjects: (Handle<IfcObjectDefinition> | IfcObjectDefinition)[], RelatedObjectsType: IfcStrippedOptional | null, RelatingGroup: (Handle<IfcGroup> | IfcGroup), Factor: IfcRatioMeasure);
     }
     class IfcRelAssignsToProcess extends IfcRelAssigns {
         GlobalId: IfcGloballyUniqueId;
@@ -27791,11 +27784,11 @@ export declare namespace IFC4X3 {
         Name: IfcLabel | null;
         Description: IfcText | null;
         RelatedObjects: (Handle<IfcObjectDefinition> | IfcObjectDefinition)[];
-        RelatedObjectsType: IfcObjectTypeEnum | null;
+        RelatedObjectsType: IfcStrippedOptional | null;
         RelatingProcess: IfcProcessSelect;
         QuantityInProcess: (Handle<IfcMeasureWithUnit> | IfcMeasureWithUnit) | null;
         type: number;
-        constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, RelatedObjects: (Handle<IfcObjectDefinition> | IfcObjectDefinition)[], RelatedObjectsType: IfcObjectTypeEnum | null, RelatingProcess: IfcProcessSelect, QuantityInProcess: (Handle<IfcMeasureWithUnit> | IfcMeasureWithUnit) | null);
+        constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, RelatedObjects: (Handle<IfcObjectDefinition> | IfcObjectDefinition)[], RelatedObjectsType: IfcStrippedOptional | null, RelatingProcess: IfcProcessSelect, QuantityInProcess: (Handle<IfcMeasureWithUnit> | IfcMeasureWithUnit) | null);
     }
     class IfcRelAssignsToProduct extends IfcRelAssigns {
         GlobalId: IfcGloballyUniqueId;
@@ -27803,10 +27796,10 @@ export declare namespace IFC4X3 {
         Name: IfcLabel | null;
         Description: IfcText | null;
         RelatedObjects: (Handle<IfcObjectDefinition> | IfcObjectDefinition)[];
-        RelatedObjectsType: IfcObjectTypeEnum | null;
+        RelatedObjectsType: IfcStrippedOptional | null;
         RelatingProduct: IfcProductSelect;
         type: number;
-        constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, RelatedObjects: (Handle<IfcObjectDefinition> | IfcObjectDefinition)[], RelatedObjectsType: IfcObjectTypeEnum | null, RelatingProduct: IfcProductSelect);
+        constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, RelatedObjects: (Handle<IfcObjectDefinition> | IfcObjectDefinition)[], RelatedObjectsType: IfcStrippedOptional | null, RelatingProduct: IfcProductSelect);
     }
     class IfcRelAssignsToResource extends IfcRelAssigns {
         GlobalId: IfcGloballyUniqueId;
@@ -27814,10 +27807,10 @@ export declare namespace IFC4X3 {
         Name: IfcLabel | null;
         Description: IfcText | null;
         RelatedObjects: (Handle<IfcObjectDefinition> | IfcObjectDefinition)[];
-        RelatedObjectsType: IfcObjectTypeEnum | null;
+        RelatedObjectsType: IfcStrippedOptional | null;
         RelatingResource: IfcResourceSelect;
         type: number;
-        constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, RelatedObjects: (Handle<IfcObjectDefinition> | IfcObjectDefinition)[], RelatedObjectsType: IfcObjectTypeEnum | null, RelatingResource: IfcResourceSelect);
+        constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, RelatedObjects: (Handle<IfcObjectDefinition> | IfcObjectDefinition)[], RelatedObjectsType: IfcStrippedOptional | null, RelatingResource: IfcResourceSelect);
     }
     class IfcRelAssociates extends IfcRelationship {
         GlobalId: IfcGloballyUniqueId;
@@ -28130,11 +28123,11 @@ export declare namespace IFC4X3 {
         RelatingElement: IfcInterferenceSelect;
         RelatedElement: IfcInterferenceSelect;
         InterferenceGeometry: (Handle<IfcConnectionGeometry> | IfcConnectionGeometry) | null;
-        InterferenceSpace: (Handle<IfcSpatialZone> | IfcSpatialZone) | null;
         InterferenceType: IfcIdentifier | null;
         ImpliedOrder: IfcLogical;
+        InterferenceSpace: (Handle<IfcSpatialZone> | IfcSpatialZone) | null;
         type: number;
-        constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, RelatingElement: IfcInterferenceSelect, RelatedElement: IfcInterferenceSelect, InterferenceGeometry: (Handle<IfcConnectionGeometry> | IfcConnectionGeometry) | null, InterferenceSpace: (Handle<IfcSpatialZone> | IfcSpatialZone) | null, InterferenceType: IfcIdentifier | null, ImpliedOrder: IfcLogical);
+        constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, RelatingElement: IfcInterferenceSelect, RelatedElement: IfcInterferenceSelect, InterferenceGeometry: (Handle<IfcConnectionGeometry> | IfcConnectionGeometry) | null, InterferenceType: IfcIdentifier | null, ImpliedOrder: IfcLogical, InterferenceSpace: (Handle<IfcSpatialZone> | IfcSpatialZone) | null);
     }
     class IfcRelNests extends IfcRelDecomposes {
         GlobalId: IfcGloballyUniqueId;
@@ -28437,9 +28430,9 @@ export declare namespace IFC4X3 {
         constructor(Position: (Handle<IfcAxis2Placement3D> | IfcAxis2Placement3D), Radius: IfcPositiveLengthMeasure);
     }
     class IfcSpiral extends IfcCurve {
-        Position: IfcAxis2Placement | null;
+        Position: IfcAxis2Placement;
         type: number;
-        constructor(Position: IfcAxis2Placement | null);
+        constructor(Position: IfcAxis2Placement);
     }
     class IfcStructuralActivity extends IfcProduct {
         GlobalId: IfcGloballyUniqueId;
@@ -28628,20 +28621,19 @@ export declare namespace IFC4X3 {
     }
     class IfcTessellatedFaceSet extends IfcTessellatedItem {
         Coordinates: (Handle<IfcCartesianPointList3D> | IfcCartesianPointList3D);
-        Closed: IfcBoolean | null;
         type: number;
         HasColours: (Handle<IfcIndexedColourMap> | IfcIndexedColourMap)[] | null;
         HasTextures: (Handle<IfcIndexedTextureMap> | IfcIndexedTextureMap)[] | null;
-        constructor(Coordinates: (Handle<IfcCartesianPointList3D> | IfcCartesianPointList3D), Closed: IfcBoolean | null);
+        constructor(Coordinates: (Handle<IfcCartesianPointList3D> | IfcCartesianPointList3D));
     }
     class IfcThirdOrderPolynomialSpiral extends IfcSpiral {
-        Position: IfcAxis2Placement | null;
+        Position: IfcAxis2Placement;
         CubicTerm: IfcLengthMeasure;
         QuadraticTerm: IfcLengthMeasure | null;
         LinearTerm: IfcLengthMeasure | null;
         ConstantTerm: IfcLengthMeasure | null;
         type: number;
-        constructor(Position: IfcAxis2Placement | null, CubicTerm: IfcLengthMeasure, QuadraticTerm: IfcLengthMeasure | null, LinearTerm: IfcLengthMeasure | null, ConstantTerm: IfcLengthMeasure | null);
+        constructor(Position: IfcAxis2Placement, CubicTerm: IfcLengthMeasure, QuadraticTerm: IfcLengthMeasure | null, LinearTerm: IfcLengthMeasure | null, ConstantTerm: IfcLengthMeasure | null);
     }
     class IfcToroidalSurface extends IfcElementarySurface {
         Position: (Handle<IfcAxis2Placement3D> | IfcAxis2Placement3D);
@@ -28665,22 +28657,22 @@ export declare namespace IFC4X3 {
     }
     class IfcTriangulatedFaceSet extends IfcTessellatedFaceSet {
         Coordinates: (Handle<IfcCartesianPointList3D> | IfcCartesianPointList3D);
-        Closed: IfcBoolean | null;
         Normals: IfcParameterValue[][] | null;
+        Closed: IfcBoolean | null;
         CoordIndex: IfcPositiveInteger[][];
         PnIndex: IfcPositiveInteger[] | null;
         type: number;
-        constructor(Coordinates: (Handle<IfcCartesianPointList3D> | IfcCartesianPointList3D), Closed: IfcBoolean | null, Normals: IfcParameterValue[][] | null, CoordIndex: IfcPositiveInteger[][], PnIndex: IfcPositiveInteger[] | null);
+        constructor(Coordinates: (Handle<IfcCartesianPointList3D> | IfcCartesianPointList3D), Normals: IfcParameterValue[][] | null, Closed: IfcBoolean | null, CoordIndex: IfcPositiveInteger[][], PnIndex: IfcPositiveInteger[] | null);
     }
     class IfcTriangulatedIrregularNetwork extends IfcTriangulatedFaceSet {
         Coordinates: (Handle<IfcCartesianPointList3D> | IfcCartesianPointList3D);
-        Closed: IfcBoolean | null;
         Normals: IfcParameterValue[][] | null;
+        Closed: IfcBoolean | null;
         CoordIndex: IfcPositiveInteger[][];
         PnIndex: IfcPositiveInteger[] | null;
         Flags: IfcInteger[];
         type: number;
-        constructor(Coordinates: (Handle<IfcCartesianPointList3D> | IfcCartesianPointList3D), Closed: IfcBoolean | null, Normals: IfcParameterValue[][] | null, CoordIndex: IfcPositiveInteger[][], PnIndex: IfcPositiveInteger[] | null, Flags: IfcInteger[]);
+        constructor(Coordinates: (Handle<IfcCartesianPointList3D> | IfcCartesianPointList3D), Normals: IfcParameterValue[][] | null, Closed: IfcBoolean | null, CoordIndex: IfcPositiveInteger[][], PnIndex: IfcPositiveInteger[] | null, Flags: IfcInteger[]);
     }
     class IfcVehicleType extends IfcTransportationDeviceType {
         GlobalId: IfcGloballyUniqueId;
@@ -28874,10 +28866,10 @@ export declare namespace IFC4X3 {
         constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, ApplicableOccurrence: IfcIdentifier | null, HasPropertySets: (Handle<IfcPropertySetDefinition> | IfcPropertySetDefinition)[] | null, RepresentationMaps: (Handle<IfcRepresentationMap> | IfcRepresentationMap)[] | null, Tag: IfcLabel | null, ElementType: IfcLabel | null);
     }
     class IfcClothoid extends IfcSpiral {
-        Position: IfcAxis2Placement | null;
+        Position: IfcAxis2Placement;
         ClothoidConstant: IfcLengthMeasure;
         type: number;
-        constructor(Position: IfcAxis2Placement | null, ClothoidConstant: IfcLengthMeasure);
+        constructor(Position: IfcAxis2Placement, ClothoidConstant: IfcLengthMeasure);
     }
     class IfcColumnType extends IfcBuiltElementType {
         GlobalId: IfcGloballyUniqueId;
@@ -28995,11 +28987,11 @@ export declare namespace IFC4X3 {
         constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, ObjectType: IfcLabel | null, Identification: IfcIdentifier | null);
     }
     class IfcCosineSpiral extends IfcSpiral {
-        Position: IfcAxis2Placement | null;
+        Position: IfcAxis2Placement;
         CosineTerm: IfcLengthMeasure;
         ConstantTerm: IfcLengthMeasure | null;
         type: number;
-        constructor(Position: IfcAxis2Placement | null, CosineTerm: IfcLengthMeasure, ConstantTerm: IfcLengthMeasure | null);
+        constructor(Position: IfcAxis2Placement, CosineTerm: IfcLengthMeasure, ConstantTerm: IfcLengthMeasure | null);
     }
     class IfcCostItem extends IfcControl {
         GlobalId: IfcGloballyUniqueId;
@@ -29744,9 +29736,9 @@ export declare namespace IFC4X3 {
     class IfcIndexedPolyCurve extends IfcBoundedCurve {
         Points: (Handle<IfcCartesianPointList> | IfcCartesianPointList);
         Segments: IfcSegmentIndexSelect[] | null;
-        SelfIntersect: IfcLogical;
+        SelfIntersect: IfcBoolean | null;
         type: number;
-        constructor(Points: (Handle<IfcCartesianPointList> | IfcCartesianPointList), Segments: IfcSegmentIndexSelect[] | null, SelfIntersect: IfcLogical);
+        constructor(Points: (Handle<IfcCartesianPointList> | IfcCartesianPointList), Segments: IfcSegmentIndexSelect[] | null, SelfIntersect: IfcBoolean | null);
     }
     class IfcInterceptorType extends IfcFlowTreatmentDeviceType {
         GlobalId: IfcGloballyUniqueId;
@@ -29808,9 +29800,9 @@ export declare namespace IFC4X3 {
         RepresentationMaps: (Handle<IfcRepresentationMap> | IfcRepresentationMap)[] | null;
         Tag: IfcLabel | null;
         ElementType: IfcLabel | null;
-        Mountable: IfcBoolean;
+        PredefinedType: IfcKerbTypeEnum;
         type: number;
-        constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, ApplicableOccurrence: IfcIdentifier | null, HasPropertySets: (Handle<IfcPropertySetDefinition> | IfcPropertySetDefinition)[] | null, RepresentationMaps: (Handle<IfcRepresentationMap> | IfcRepresentationMap)[] | null, Tag: IfcLabel | null, ElementType: IfcLabel | null, Mountable: IfcBoolean);
+        constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, ApplicableOccurrence: IfcIdentifier | null, HasPropertySets: (Handle<IfcPropertySetDefinition> | IfcPropertySetDefinition)[] | null, RepresentationMaps: (Handle<IfcRepresentationMap> | IfcRepresentationMap)[] | null, Tag: IfcLabel | null, ElementType: IfcLabel | null, PredefinedType: IfcKerbTypeEnum);
     }
     class IfcLaborResource extends IfcConstructionResource {
         GlobalId: IfcGloballyUniqueId;
@@ -30548,12 +30540,12 @@ export declare namespace IFC4X3 {
         constructor(Curve3D: (Handle<IfcCurve> | IfcCurve), AssociatedGeometry: (Handle<IfcPcurve> | IfcPcurve)[], MasterRepresentation: IfcPreferredSurfaceCurveRepresentation);
     }
     class IfcSecondOrderPolynomialSpiral extends IfcSpiral {
-        Position: IfcAxis2Placement | null;
+        Position: IfcAxis2Placement;
         QuadraticTerm: IfcLengthMeasure;
         LinearTerm: IfcLengthMeasure | null;
         ConstantTerm: IfcLengthMeasure | null;
         type: number;
-        constructor(Position: IfcAxis2Placement | null, QuadraticTerm: IfcLengthMeasure, LinearTerm: IfcLengthMeasure | null, ConstantTerm: IfcLengthMeasure | null);
+        constructor(Position: IfcAxis2Placement, QuadraticTerm: IfcLengthMeasure, LinearTerm: IfcLengthMeasure | null, ConstantTerm: IfcLengthMeasure | null);
     }
     class IfcSegmentedReferenceCurve extends IfcCompositeCurve {
         Segments: (Handle<IfcSegment> | IfcSegment)[];
@@ -30564,7 +30556,7 @@ export declare namespace IFC4X3 {
         constructor(Segments: (Handle<IfcSegment> | IfcSegment)[], SelfIntersect: IfcLogical, BaseCurve: (Handle<IfcBoundedCurve> | IfcBoundedCurve), EndPoint: (Handle<IfcPlacement> | IfcPlacement) | null);
     }
     class IfcSeventhOrderPolynomialSpiral extends IfcSpiral {
-        Position: IfcAxis2Placement | null;
+        Position: IfcAxis2Placement;
         SepticTerm: IfcLengthMeasure;
         SexticTerm: IfcLengthMeasure | null;
         QuinticTerm: IfcLengthMeasure | null;
@@ -30574,7 +30566,7 @@ export declare namespace IFC4X3 {
         LinearTerm: IfcLengthMeasure | null;
         ConstantTerm: IfcLengthMeasure | null;
         type: number;
-        constructor(Position: IfcAxis2Placement | null, SepticTerm: IfcLengthMeasure, SexticTerm: IfcLengthMeasure | null, QuinticTerm: IfcLengthMeasure | null, QuarticTerm: IfcLengthMeasure | null, CubicTerm: IfcLengthMeasure | null, QuadraticTerm: IfcLengthMeasure | null, LinearTerm: IfcLengthMeasure | null, ConstantTerm: IfcLengthMeasure | null);
+        constructor(Position: IfcAxis2Placement, SepticTerm: IfcLengthMeasure, SexticTerm: IfcLengthMeasure | null, QuinticTerm: IfcLengthMeasure | null, QuarticTerm: IfcLengthMeasure | null, CubicTerm: IfcLengthMeasure | null, QuadraticTerm: IfcLengthMeasure | null, LinearTerm: IfcLengthMeasure | null, ConstantTerm: IfcLengthMeasure | null);
     }
     class IfcShadingDeviceType extends IfcBuiltElementType {
         GlobalId: IfcGloballyUniqueId;
@@ -30632,12 +30624,12 @@ export declare namespace IFC4X3 {
         constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, ApplicableOccurrence: IfcIdentifier | null, HasPropertySets: (Handle<IfcPropertySetDefinition> | IfcPropertySetDefinition)[] | null, RepresentationMaps: (Handle<IfcRepresentationMap> | IfcRepresentationMap)[] | null, Tag: IfcLabel | null, ElementType: IfcLabel | null, PredefinedType: IfcSignalTypeEnum);
     }
     class IfcSineSpiral extends IfcSpiral {
-        Position: IfcAxis2Placement | null;
+        Position: IfcAxis2Placement;
         SineTerm: IfcLengthMeasure;
         LinearTerm: IfcLengthMeasure | null;
         ConstantTerm: IfcLengthMeasure | null;
         type: number;
-        constructor(Position: IfcAxis2Placement | null, SineTerm: IfcLengthMeasure, LinearTerm: IfcLengthMeasure | null, ConstantTerm: IfcLengthMeasure | null);
+        constructor(Position: IfcAxis2Placement, SineTerm: IfcLengthMeasure, LinearTerm: IfcLengthMeasure | null, ConstantTerm: IfcLengthMeasure | null);
     }
     class IfcSite extends IfcSpatialStructureElement {
         GlobalId: IfcGloballyUniqueId;
@@ -31122,9 +31114,9 @@ export declare namespace IFC4X3 {
         Representation: (Handle<IfcProductRepresentation> | IfcProductRepresentation) | null;
         Tag: IfcIdentifier | null;
         SteelGrade: IfcLabel | null;
-        PredefinedType: IfcTendonConduitTypeEnum;
+        PredefinedType: IfcTendonConduitTypeEnum | null;
         type: number;
-        constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, ObjectType: IfcLabel | null, ObjectPlacement: (Handle<IfcObjectPlacement> | IfcObjectPlacement) | null, Representation: (Handle<IfcProductRepresentation> | IfcProductRepresentation) | null, Tag: IfcIdentifier | null, SteelGrade: IfcLabel | null, PredefinedType: IfcTendonConduitTypeEnum);
+        constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, ObjectType: IfcLabel | null, ObjectPlacement: (Handle<IfcObjectPlacement> | IfcObjectPlacement) | null, Representation: (Handle<IfcProductRepresentation> | IfcProductRepresentation) | null, Tag: IfcIdentifier | null, SteelGrade: IfcLabel | null, PredefinedType: IfcTendonConduitTypeEnum | null);
     }
     class IfcTendonConduitType extends IfcReinforcingElementType {
         GlobalId: IfcGloballyUniqueId;
@@ -31284,9 +31276,9 @@ export declare namespace IFC4X3 {
         ObjectPlacement: (Handle<IfcObjectPlacement> | IfcObjectPlacement) | null;
         Representation: (Handle<IfcProductRepresentation> | IfcProductRepresentation) | null;
         Tag: IfcIdentifier | null;
-        PredefinedType: IfcDamperTypeEnum | null;
+        PredefinedType: IfcVibrationDamperTypeEnum | null;
         type: number;
-        constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, ObjectType: IfcLabel | null, ObjectPlacement: (Handle<IfcObjectPlacement> | IfcObjectPlacement) | null, Representation: (Handle<IfcProductRepresentation> | IfcProductRepresentation) | null, Tag: IfcIdentifier | null, PredefinedType: IfcDamperTypeEnum | null);
+        constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, ObjectType: IfcLabel | null, ObjectPlacement: (Handle<IfcObjectPlacement> | IfcObjectPlacement) | null, Representation: (Handle<IfcProductRepresentation> | IfcProductRepresentation) | null, Tag: IfcIdentifier | null, PredefinedType: IfcVibrationDamperTypeEnum | null);
     }
     class IfcVibrationDamperType extends IfcElementComponentType {
         GlobalId: IfcGloballyUniqueId;
@@ -32783,9 +32775,9 @@ export declare namespace IFC4X3 {
         ObjectPlacement: (Handle<IfcObjectPlacement> | IfcObjectPlacement) | null;
         Representation: (Handle<IfcProductRepresentation> | IfcProductRepresentation) | null;
         Tag: IfcIdentifier | null;
-        Mountable: IfcBoolean;
+        PredefinedType: IfcKerbTypeEnum | null;
         type: number;
-        constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, ObjectType: IfcLabel | null, ObjectPlacement: (Handle<IfcObjectPlacement> | IfcObjectPlacement) | null, Representation: (Handle<IfcProductRepresentation> | IfcProductRepresentation) | null, Tag: IfcIdentifier | null, Mountable: IfcBoolean);
+        constructor(GlobalId: IfcGloballyUniqueId, OwnerHistory: (Handle<IfcOwnerHistory> | IfcOwnerHistory) | null, Name: IfcLabel | null, Description: IfcText | null, ObjectType: IfcLabel | null, ObjectPlacement: (Handle<IfcObjectPlacement> | IfcObjectPlacement) | null, Representation: (Handle<IfcProductRepresentation> | IfcProductRepresentation) | null, Tag: IfcIdentifier | null, PredefinedType: IfcKerbTypeEnum | null);
     }
     class IfcLamp extends IfcFlowTerminal {
         GlobalId: IfcGloballyUniqueId;
