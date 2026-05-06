@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="icon" type="image/x-icon" href="https://thatopen.github.io/engine_components/resources/favicon.ico">
     <title>BIM</title>
-    <!-- CSRFトークンが未設定のパターンがない場合はif判定は不要-->
     <th:block th:if="${_csrf}">
         <meta name="_csrf_header" th:content="${_csrf.headerName}">
         <meta name="_csrf" th:content="${_csrf.token}">
@@ -125,18 +124,168 @@
             right: 40px;
         }
     }
-
-    /* Left + Right panels */
     #object-explorer {
         position: absolute;
         top: 0;
         height: 100%;
         width: 300px;
-        background: #1e1e1e;
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+        background:
+            radial-gradient(circle at 15% 0%, rgba(45, 212, 191, 0.16), transparent 34%),
+            linear-gradient(180deg, #0b1220 0%, #111827 48%, #0f172a 100%);
+        box-shadow: 12px 0 36px rgba(2, 6, 23, 0.35);
+        border-right: 1px solid rgba(148, 163, 184, 0.16);
         overflow: hidden;
         transition: transform 0.3s ease-in-out;
         z-index: 100;
+    }
+
+    .object-explorer-shell {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 0.8rem;
+        box-sizing: border-box;
+        color: #e5edf7;
+        font-family: "Plus Jakarta Sans", sans-serif;
+    }
+
+    .object-explorer-hero {
+        position: relative;
+        padding: 0.95rem 2.9rem 1rem 0.95rem;
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        border-radius: 1.15rem;
+        background:
+            linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(15, 118, 110, 0.24)),
+            radial-gradient(circle at 100% 0%, rgba(56, 189, 248, 0.18), transparent 38%);
+        box-shadow: 0 18px 36px rgba(2, 6, 23, 0.28);
+    }
+
+    .object-explorer-eyebrow {
+        color: #67e8f9;
+        font-size: 0.67rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+    }
+
+    .object-explorer-title {
+        margin-top: 0.25rem;
+        color: #f8fafc;
+        font-size: 1.05rem;
+        font-weight: 800;
+        letter-spacing: -0.035em;
+    }
+
+    .object-explorer-subtitle {
+        margin-top: 0.35rem;
+        color: rgba(203, 213, 225, 0.72);
+        font-size: 0.72rem;
+        line-height: 1.4;
+    }
+
+    .object-explorer-toolbar {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+    }
+
+    .object-explorer-action {
+        min-width: 0;
+        border-radius: 0.8rem;
+        font-weight: 800;
+        border: 1px solid rgba(94, 234, 212, 0.44);
+        box-shadow: 0 8px 18px rgba(2, 6, 23, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        --bim-button--bgc: rgba(20, 184, 166, 0.58);
+        --bim-label--c: #ecfeff;
+        --bim-icon--c: #ecfeff;
+        --bim-ui_main-base: #2dd4bf;
+        --bim-ui_main-contrast: #042f2e;
+    }
+
+    .object-explorer-action:hover {
+        border-color: rgba(125, 249, 235, 0.82);
+        box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.16), 0 10px 22px rgba(2, 6, 23, 0.32);
+    }
+
+    .object-explorer-search-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+        padding: 0.7rem;
+        border: 1px solid rgba(148, 163, 184, 0.14);
+        border-radius: 1rem;
+        background: rgba(15, 23, 42, 0.68);
+    }
+
+    .object-explorer-search-wrap span {
+        color: rgba(203, 213, 225, 0.72);
+        font-size: 0.68rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+    }
+
+    .object-explorer-search {
+        width: 100%;
+        border: 1px solid rgba(148, 163, 184, 0.20);
+        border-radius: 0.75rem;
+        outline: none;
+        padding: 0.55rem 0.65rem;
+        box-sizing: border-box;
+        background: rgba(2, 6, 23, 0.48);
+        color: #f8fafc;
+        font: inherit;
+        font-size: 0.78rem;
+        transition: border-color 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+    }
+
+    .object-explorer-search::placeholder {
+        color: rgba(148, 163, 184, 0.62);
+    }
+
+    .object-explorer-search:focus {
+        border-color: rgba(45, 212, 191, 0.72);
+        background: rgba(2, 6, 23, 0.72);
+        box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.13);
+    }
+
+    .object-explorer-tree-card {
+        flex: 1 1 auto;
+        min-height: 0;
+        padding: 0.45rem;
+        border: 1px solid rgba(148, 163, 184, 0.16);
+        border-radius: 1.15rem;
+        background:
+            linear-gradient(180deg, rgba(15, 23, 42, 0.82), rgba(2, 6, 23, 0.76)),
+            radial-gradient(circle at 15% 10%, rgba(45, 212, 191, 0.08), transparent 30%);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        overflow: hidden;
+    }
+
+    .object-explorer-tree-card bim-table {
+        height: 100%;
+    }
+
+    .close-btn.object-explorer-close {
+        top: 0.65rem;
+        right: 0.65rem;
+        width: 2.1rem;
+        height: 2.1rem;
+        border-radius: 0.75rem;
+        background: rgba(248, 250, 252, 0.96);
+        border: 1px solid rgba(255, 255, 255, 0.62);
+        box-shadow: 0 10px 24px rgba(2, 6, 23, 0.32);
+        --bim-label--c: #0f172a;
+        --bim-icon--c: #0f172a;
+        --bim-ui_main-base: #2dd4bf;
+        --bim-ui_main-contrast: #042f2e;
+    }
+
+    .close-btn.object-explorer-close:hover {
+        background: #2dd4bf;
+        border-color: rgba(153, 246, 228, 0.96);
+        box-shadow: 0 0 0 4px rgba(45, 212, 191, 0.20), 0 12px 26px rgba(2, 6, 23, 0.36);
     }
 
     #object-property {
@@ -168,8 +317,6 @@
     #object-property.collapsed {
         transform: translateX(100%);
     }
-
-    /* Close button inside panel */
     .close-btn {
         position: absolute;
         top: 6px;
@@ -180,8 +327,6 @@
         background: #f5f5f5;
         box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
     }
-
-    /* Close button inside panel */
     .close-btn-right {
         position: absolute;
         top: 6px;
@@ -196,36 +341,62 @@
     .close-btn:hover,
     .close-btn-right:hover {
         background: #6a0dad;
-        /* dark violet */
         border-color: #6a0dad;
         color: white;
         box-shadow: 0 0 8px rgba(106, 13, 173, 0.5);
         transition: all 0.2s ease-in-out;
     }
-
-    /* Reopen button for both sides */
     .reopen-btn {
         position: absolute;
-        top: 10px;
-        background: #fff;
-        border: 1px solid #ccc;
-        border-radius: 50%;
-        width: 2.2rem;
-        height: 2.2rem;
-        font-size: 1.2rem;
+        top: 12px;
+        display: grid;
+        place-items: center;
+        width: 2rem;
+        height: 2rem;
+        padding: 0;
+        background:
+            linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(15, 118, 110, 0.72)),
+            radial-gradient(circle at 20% 0%, rgba(45, 212, 191, 0.25), transparent 42%);
+        color: #ecfeff;
+        border: 0;
+        border-radius: 999px;
         cursor: pointer;
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
-        transition: opacity 0.2s;
+        box-shadow: 0 14px 32px rgba(2, 6, 23, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        transition: opacity 0.2s, transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
         z-index: 200;
     }
 
     .reopen-btn:hover {
-        background: #6a0dad;
-        /* dark violet */
-        border-color: #6a0dad;
-        color: white;
-        box-shadow: 0 0 8px rgba(106, 13, 173, 0.5);
-        transition: all 0.2s ease-in-out;
+        transform: translateY(-1px);
+        box-shadow: 0 0 0 4px rgba(45, 212, 191, 0.16), 0 16px 34px rgba(2, 6, 23, 0.42);
+    }
+
+    .reopen-btn-icon {
+        width: 1.05rem;
+        height: 0.82rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .reopen-btn-icon span {
+        width: 100%;
+        height: 2px;
+        border-radius: 999px;
+        background: #99f6e4;
+        box-shadow: 0 0 8px rgba(153, 246, 228, 0.36);
+    }
+
+    .reopen-btn-text {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 1.25rem;
+        line-height: 1;
+        white-space: nowrap;
+        flex: 0 0 auto;
+        transform: translateY(-0.5px);
     }
 
     .reopen-btn.right {
@@ -233,7 +404,7 @@
     }
 
     .reopen-btn.left {
-        left: 10px;
+        left: 12px;
     }
 
     #object-explorer:not(.collapsed)~.reopen-btn.left {
@@ -261,6 +432,56 @@
         z-index: 100;
     }
 
+    .memory-box {
+        position: fixed;
+        left: 50%;
+        top: 0.7rem;
+        transform: translateX(-50%);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        min-height: 2rem;
+        padding: 0.35rem 0.72rem;
+        box-sizing: border-box;
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        border-radius: 999px;
+        background:
+            radial-gradient(circle at 10% 0%, rgba(45, 212, 191, 0.18), transparent 40%),
+            linear-gradient(135deg, rgba(15, 23, 42, 0.94), rgba(2, 6, 23, 0.82));
+        color: #e5edf7;
+        box-shadow: 0 14px 32px rgba(2, 6, 23, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+        backdrop-filter: blur(12px);
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.02em;
+        pointer-events: none;
+        z-index: 9999;
+    }
+
+    .memory-box-label {
+        color: rgba(203, 213, 225, 0.72);
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.11em;
+    }
+
+    .memory-box-value {
+        min-width: 4.8rem;
+        color: #ecfeff;
+        font-size: 0.78rem;
+        font-weight: 900;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .memory-box[data-level="medium"] .memory-box-value {
+        color: #fef3c7;
+    }
+
+    .memory-box[data-level="high"] .memory-box-value {
+        color: #ffe4e6;
+    }
+
     #toggle-button {
         position: absolute;
         top: 5px;
@@ -276,7 +497,6 @@
 
     #toggle-button:hover {
         background: #6a0dad;
-        /* dark violet */
         border-color: #6a0dad;
         color: white;
         box-shadow: 0 0 8px rgba(106, 13, 173, 0.5);
@@ -309,7 +529,6 @@
 
     #toggle-button1:hover {
         background: #6a0dad;
-        /* dark violet */
         border-color: #6a0dad;
         color: white;
         box-shadow: 0 0 8px rgba(106, 13, 173, 0.5);
@@ -333,8 +552,6 @@
         gap: 0.5rem;
         margin: 0.5rem 0;
     }
-
-    /* make each button perfectly square */
     .direction-buttons bim-button {
         width: 30px;
         height: 30px;
@@ -345,11 +562,8 @@
         text-align: center;
         font-weight: 500;
         border-radius: 0.5rem;
-        /* optional – soften corners */
         transition: background 0.2s, color 0.2s;
     }
-
-    /* active state (from your radio-style behavior) */
     .direction-buttons bim-button.active {
         background: #007bff;
         color: white;
@@ -363,15 +577,12 @@
         gap: 0.75rem;
         margin-top: 1rem;
         flex-wrap: wrap;
-        /* ✅ allow wrapping when space is tight */
         width: 100%;
-        /* ✅ make it stretch instead of fixed 300px */
         box-sizing: border-box;
     }
 
     .bottom-row bim-dropdown {
         flex: 1 1 12rem;
-        /* grows/shrinks, min width 12rem */
         min-width: 12rem;
         max-width: 20rem;
     }
@@ -383,7 +594,6 @@
     .coordinate-inputs {
         display: flex;
         flex-direction: column;
-        /* label on top */
         gap: 0.25rem;
         min-width: 4rem;
         flex-shrink: 0;
@@ -395,7 +605,6 @@
         font-size: 0.9rem;
         white-space: nowrap;
     }
-    /*SLIDER STYLE (ToanPT)*/
     .editor-slider {
         width: 100%;
         margin: 10px 0;
@@ -464,6 +673,506 @@
         margin-top: 4px;
         color: #555;
     }
+
+    .common-tools-panel {
+        width: 24rem;
+        min-width: 24rem;
+        max-width: 24rem;
+        max-height: calc(100vh - 10px);
+        overflow: hidden;
+        overflow-x: hidden;
+        box-sizing: border-box;
+        color: #e5edf7;
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        border-radius: 1.15rem;
+        background:
+            radial-gradient(circle at 12% 0%, rgba(45, 212, 191, 0.15), transparent 34%),
+            radial-gradient(circle at 100% 18%, rgba(14, 165, 233, 0.12), transparent 30%),
+            linear-gradient(180deg, rgba(15, 23, 42, 0.97), rgba(2, 6, 23, 0.94));
+        box-shadow: 0 18px 36px rgba(2, 6, 23, 0.36), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        --bim-ui_bg-base: transparent;
+        --bim-ui_bg-contrast-20: rgba(148, 163, 184, 0.16);
+        --bim-ui_bg-contrast-80: #e5edf7;
+        --bim-ui_accent-base: #99f6e4;
+        --bim-panel--c: #f8fafc;
+        --bim-panel-section_hc: #f8fafc;
+        --bim-label--c: #e5edf7;
+    }
+
+    .common-tools-section {
+        max-width: 100%;
+        overflow-x: hidden;
+        color: #e5edf7;
+        --bim-ui_accent-base: #99f6e4;
+        --bim-panel-section_hc: #f8fafc;
+        --bim-ui_bg-contrast-80: #e5edf7;
+    }
+
+    .common-tools-section:hover,
+    .common-tools-subsection:hover {
+        --bim-ui_accent-base: #67e8f9;
+    }
+
+    .common-tools-shell {
+        width: 100%;
+        max-width: 22rem;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        box-sizing: border-box;
+        font-family: "Plus Jakarta Sans", sans-serif;
+    }
+
+    .common-tool-card {
+        width: 100%;
+        min-width: 0;
+        padding: 0.78rem;
+        box-sizing: border-box;
+        border-radius: 1rem;
+        border: 1px solid rgba(148, 163, 184, 0.16);
+        background:
+            radial-gradient(circle at 100% 0%, rgba(45, 212, 191, 0.10), transparent 42%),
+            linear-gradient(180deg, rgba(30, 41, 59, 0.82), rgba(15, 23, 42, 0.74));
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+
+    .common-tool-card-primary {
+        border-color: rgba(94, 234, 212, 0.24);
+        background:
+            linear-gradient(135deg, rgba(20, 184, 166, 0.22), rgba(14, 165, 233, 0.12)),
+            linear-gradient(180deg, rgba(15, 23, 42, 0.86), rgba(2, 6, 23, 0.72));
+    }
+
+    .common-tool-card-plain {
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .common-tool-heading {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 0.75rem;
+        margin-bottom: 0.7rem;
+    }
+
+    .common-tool-heading span {
+        color: #f8fafc;
+        font-size: 0.82rem;
+        font-weight: 900;
+        letter-spacing: 0.04em;
+    }
+
+    .common-tool-heading small {
+        color: rgba(203, 213, 225, 0.64);
+        font-size: 0.66rem;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
+
+    .common-tools-button-grid,
+    .saved-view-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.5rem;
+        min-width: 0;
+    }
+
+    .common-tools-button-grid bim-button,
+    .saved-view-actions bim-button,
+    .saved-view-name-button {
+        min-width: 0;
+        height: 2rem;
+        border-radius: 0.72rem;
+        font-weight: 800;
+        border: 1px solid rgba(94, 234, 212, 0.28);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 8px 18px rgba(2, 6, 23, 0.20);
+        --bim-button--bgc: rgba(15, 118, 110, 0.34);
+        --bim-label--c: #ecfeff;
+        --bim-icon--c: #ecfeff;
+        --bim-ui_main-base: #2dd4bf;
+        --bim-ui_main-contrast: #042f2e;
+    }
+
+    .common-tools-button-grid bim-button:hover,
+    .saved-view-actions bim-button:hover,
+    .saved-view-name-button:hover {
+        border-color: rgba(204, 251, 241, 0.96);
+        box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.18), 0 10px 22px rgba(2, 6, 23, 0.28);
+        --bim-button--bgc: #99f6e4;
+        --bim-label--c: #042f2e;
+        --bim-icon--c: #042f2e;
+    }
+
+    .common-tools-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.55rem;
+        align-items: center;
+        min-width: 0;
+    }
+
+    .common-tools-row bim-checkbox,
+    .common-tools-row bim-color-input {
+        min-width: 0;
+        --bim-label--c: #e5edf7;
+        --bim-ui_bg-contrast-80: #e5edf7;
+        --bim-ui_accent-base: #2dd4bf;
+    }
+
+    .common-tools-table-wrap {
+        margin-top: 0.65rem;
+        min-width: 0;
+        overflow: auto;
+        overflow-x: hidden;
+        border-radius: 0.75rem;
+        border: 1px solid rgba(148, 163, 184, 0.14);
+        background: rgba(2, 6, 23, 0.30);
+    }
+
+    .common-tools-table-wrap bim-table {
+        width: 100%;
+        max-height: 15rem !important;
+        --bim-scrollbar--c: #2dd4bf;
+        --bim-scrollbar--bgc: rgba(15, 23, 42, 0.74);
+        --bim-ui_bg-base: transparent;
+        --bim-ui_bg-contrast-80: #e5edf7;
+        --bim-table-row--bgc: transparent;
+        --bim-label--c: #e5edf7;
+    }
+
+    .common-tools-table-wrap::-webkit-scrollbar {
+        width: 0.5rem;
+    }
+
+    .common-tools-table-wrap::-webkit-scrollbar-track {
+        background: rgba(15, 23, 42, 0.62);
+        border-radius: 999px;
+    }
+
+    .common-tools-table-wrap::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #2dd4bf, #0ea5e9);
+        border: 2px solid rgba(15, 23, 42, 0.78);
+        border-radius: 999px;
+    }
+
+    .common-tools-table-wrap::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(180deg, #99f6e4, #67e8f9);
+    }
+
+    .classifier-table {
+        scrollbar-color: #2dd4bf rgba(15, 23, 42, 0.74);
+        scrollbar-width: thin;
+    }
+
+    .classifier-reset-button {
+        border-color: rgba(103, 232, 249, 0.72);
+        --bim-button--bgc: rgba(14, 165, 233, 0.24);
+        --bim-label--c: #cffafe;
+        --bim-icon--c: #cffafe;
+    }
+
+    .classifier-reset-button:hover {
+        border-color: rgba(207, 250, 254, 0.96);
+        --bim-button--bgc: #67e8f9;
+        --bim-label--c: #083344;
+        --bim-icon--c: #083344;
+    }
+
+    .classifier-add-button {
+        border-color: rgba(190, 242, 100, 0.76);
+        --bim-button--bgc: rgba(132, 204, 22, 0.24);
+        --bim-label--c: #ecfccb;
+        --bim-icon--c: #ecfccb;
+    }
+
+    .classifier-add-button:hover {
+        border-color: rgba(217, 249, 157, 0.96);
+        --bim-button--bgc: #bef264;
+        --bim-label--c: #1a2e05;
+        --bim-icon--c: #1a2e05;
+    }
+
+    .classifier-isolate-button {
+        border-color: rgba(153, 246, 228, 0.66);
+        --bim-button--bgc: rgba(20, 184, 166, 0.24);
+        --bim-icon--c: #99f6e4;
+    }
+
+    .classifier-isolate-button:hover {
+        border-color: rgba(204, 251, 241, 0.96);
+        --bim-button--bgc: #99f6e4;
+        --bim-icon--c: #042f2e;
+    }
+
+    .common-tools-subsection {
+        display: block;
+        max-width: 100%;
+        color: #e5edf7;
+        --bim-ui_bg-base: transparent;
+        --bim-ui_bg-contrast-20: rgba(148, 163, 184, 0.12);
+        --bim-ui_bg-contrast-80: #e5edf7;
+        --bim-ui_accent-base: #99f6e4;
+        --bim-panel-section_hc: #f8fafc;
+        --bim-label--c: #e5edf7;
+    }
+
+    .saved-view-actions {
+        margin-bottom: 0.7rem;
+    }
+
+    .saved-view-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+        max-height: 12.5rem;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-right: 0.15rem;
+    }
+
+    .saved-view-row {
+        display: flex;
+        gap: 0.35rem;
+        align-items: center;
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    .saved-view-name-button {
+        flex: 1 1 auto;
+        overflow: hidden;
+        white-space: nowrap;
+        justify-content: flex-start;
+        padding-left: 0.5rem;
+    }
+
+    .saved-view-icon-button {
+        flex: 0 0 1.75rem;
+        width: 1.75rem;
+        height: 1.75rem;
+        min-width: unset;
+        padding: 0;
+        border-radius: 0.58rem;
+        background-color: transparent;
+    }
+
+    .saved-view-edit-button {
+        color: #042f2e;
+        border: 1px solid rgba(190, 242, 100, 0.76);
+        background: rgba(132, 204, 22, 0.22);
+        --bim-button--bgc: rgba(132, 204, 22, 0.22);
+        --bim-icon--c: #bef264;
+    }
+
+    .saved-view-delete-button {
+        color: #450a0a;
+        border: 1px solid rgba(251, 113, 133, 0.78);
+        background: rgba(244, 63, 94, 0.22);
+        --bim-button--bgc: rgba(244, 63, 94, 0.22);
+        --bim-icon--c: #fda4af;
+    }
+
+    .saved-view-edit-button:hover {
+        border-color: rgba(217, 249, 157, 0.95);
+        --bim-button--bgc: #bef264;
+        --bim-icon--c: #1a2e05;
+    }
+
+    .saved-view-delete-button:hover {
+        border-color: rgba(254, 205, 211, 0.95);
+        --bim-button--bgc: #fb7185;
+        --bim-icon--c: #450a0a;
+    }
+
+    .saved-view-empty {
+        padding: 0.75rem;
+        border-radius: 0.75rem;
+        color: rgba(203, 213, 225, 0.62);
+        text-align: center;
+        background: rgba(2, 6, 23, 0.30);
+    }
+
+    .saved-view-list::-webkit-scrollbar {
+        width: 0.5rem;
+    }
+
+    .saved-view-list::-webkit-scrollbar-track {
+        background: rgba(15, 23, 42, 0.62);
+        border-radius: 999px;
+    }
+
+    .saved-view-list::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #2dd4bf, #0ea5e9);
+        border: 2px solid rgba(15, 23, 42, 0.78);
+        border-radius: 999px;
+    }
+
+    .saved-view-list::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(180deg, #99f6e4, #67e8f9);
+    }
+
+    .section-control-panel {
+        width: 21rem;
+        min-width: 21rem;
+        max-width: 21rem;
+        box-sizing: border-box;
+        overflow: hidden;
+        overflow-x: hidden;
+        color: #e5edf7;
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        border-radius: 1.1rem;
+        background:
+            radial-gradient(circle at 16% 0%, rgba(45, 212, 191, 0.16), transparent 36%),
+            linear-gradient(180deg, rgba(15, 23, 42, 0.96), rgba(2, 6, 23, 0.92));
+        box-shadow: 0 18px 36px rgba(2, 6, 23, 0.36), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        --bim-ui_bg-base: transparent;
+        --bim-ui_bg-contrast-20: rgba(148, 163, 184, 0.16);
+        --bim-ui_bg-contrast-80: #e5edf7;
+        --bim-panel--c: #f8fafc;
+        --bim-panel-section_hc: #f8fafc;
+        --bim-label--c: #e5edf7;
+    }
+
+    .section-control-section {
+        color: #e5edf7;
+        max-width: 100%;
+        overflow-x: hidden;
+        --bim-ui_accent-base: #99f6e4;
+        --bim-panel-section_hc: #f8fafc;
+        --bim-ui_bg-contrast-80: #e5edf7;
+    }
+
+    .section-control-section:hover {
+        --bim-ui_accent-base: #67e8f9;
+    }
+
+    .section-control-shell {
+        width: 100%;
+        max-width: 18.35rem;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Plus Jakarta Sans", sans-serif;
+    }
+
+    .section-direction-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0.35rem;
+        margin: 0;
+    }
+
+    .section-direction-grid bim-button {
+        width: 100%;
+        height: 1.95rem;
+        border-radius: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        border: 1px solid rgba(94, 234, 212, 0.28);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 8px 18px rgba(2, 6, 23, 0.22);
+        --bim-button--bgc: rgba(15, 118, 110, 0.34);
+        --bim-label--c: #ecfeff;
+        --bim-icon--c: #ecfeff;
+        --bim-ui_main-base: #2dd4bf;
+        --bim-ui_main-contrast: #042f2e;
+    }
+
+    .section-direction-grid bim-button:hover {
+        color: #042f2e;
+        border-color: rgba(204, 251, 241, 0.96);
+        box-shadow: 0 0 0 4px rgba(45, 212, 191, 0.22), 0 10px 22px rgba(2, 6, 23, 0.32);
+        --bim-button--bgc: #99f6e4;
+        --bim-label--c: #042f2e;
+        --bim-icon--c: #042f2e;
+    }
+
+    .section-direction-grid bim-button.active {
+        background: linear-gradient(135deg, #14b8a6, #0891b2);
+        color: #042f2e;
+        border-color: rgba(204, 251, 241, 0.88);
+        box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.18), 0 12px 24px rgba(8, 145, 178, 0.26);
+        --bim-button--bgc: #2dd4bf;
+        --bim-label--c: #042f2e;
+    }
+
+    .section-slider-card {
+        margin: 0;
+        padding: 0.72rem;
+        width: 100%;
+        box-sizing: border-box;
+        border-radius: 0.9rem;
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        background:
+            radial-gradient(circle at 100% 0%, rgba(45, 212, 191, 0.13), transparent 42%),
+            linear-gradient(180deg, rgba(30, 41, 59, 0.86), rgba(15, 23, 42, 0.78));
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        font-family: "Plus Jakarta Sans", sans-serif;
+    }
+
+    .section-slider-card .top-row {
+        margin-bottom: 0.7rem;
+    }
+
+    .section-slider-card .top-row label {
+        color: #cbd5e1;
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+    }
+
+    .section-slider-card .value-box input[type="number"] {
+        width: 4.5rem;
+        padding: 0.38rem 0.48rem;
+        border: 1px solid rgba(94, 234, 212, 0.34);
+        border-radius: 0.65rem;
+        background: rgba(2, 6, 23, 0.66);
+        color: #f8fafc;
+        font-size: 0.78rem;
+        font-weight: 700;
+        outline: none;
+    }
+
+    .section-slider-card .value-box input[type="number"]:focus {
+        border-color: rgba(94, 234, 212, 0.82);
+        box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.14);
+    }
+
+    .section-slider-card .slider-row {
+        gap: 0.45rem;
+        min-width: 0;
+    }
+
+    .section-slider-card .slider-row span {
+        min-width: 2.15rem;
+        color: rgba(203, 213, 225, 0.72);
+        font-size: 0.64rem;
+        font-weight: 800;
+        text-align: center;
+    }
+
+    .section-slider-card .slider-row input[type="range"] {
+        min-width: 0;
+        height: 0.42rem;
+        background: linear-gradient(90deg, rgba(20, 184, 166, 0.82), rgba(14, 165, 233, 0.78));
+        border-radius: 999px;
+        accent-color: #2dd4bf;
+    }
+
+    .section-slider-card .slider-row input[type="range"]::-webkit-slider-thumb {
+        width: 1rem;
+        height: 1rem;
+        background: #ecfeff;
+        border: 3px solid #14b8a6;
+        box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.16);
+    }
 </style>
 
 <body>
@@ -471,8 +1180,6 @@
     <input type="hidden" th:value="${url}" id="url-download-file" />
     <div id="object-explorer" class="left-panel">
     </div>
-    <!-- <div id="object-property" class="right-panel">
-    </div> -->
     <div id="container"></div>
 </body>
 
