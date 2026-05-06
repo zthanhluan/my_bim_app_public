@@ -43,8 +43,8 @@
         position: absolute;
         top: 0;
         left: 300px;
-        right: 300px;
-        width: calc(100vw - 600px);
+        right: 0;
+        width: calc(100vw - 300px);
         height: 100vh;
         background: #222;
         transition: all 0.3s ease-in-out;
@@ -122,6 +122,17 @@
             position: fixed;
             top: 5px;
             right: 40px;
+        }
+
+        #container {
+            left: 0;
+            right: 0;
+            width: 100vw;
+        }
+
+        #object-explorer {
+            width: min(86vw, 300px);
+            max-width: 300px;
         }
     }
     #object-explorer {
