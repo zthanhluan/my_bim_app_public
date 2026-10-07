@@ -43,8 +43,8 @@
         position: absolute;
         top: 0;
         left: 300px;
-        right: 0;
-        width: calc(100vw - 300px);
+        right: 300px;
+        width: calc(100vw - 600px);
         height: 100vh;
         background: #222;
         transition: all 0.3s ease-in-out;
@@ -123,22 +123,12 @@
             top: 5px;
             right: 40px;
         }
-
-        #container {
-            left: 0;
-            right: 0;
-            width: 100vw;
-        }
-
-        #object-explorer {
-            width: min(86vw, 300px);
-            max-width: 300px;
-        }
     }
     #object-explorer {
         position: absolute;
         top: 0;
-        height: 100%;
+        left: 0;
+        height: 100vh;
         width: 300px;
         background:
             radial-gradient(circle at 15% 0%, rgba(45, 212, 191, 0.16), transparent 34%),
@@ -491,6 +481,57 @@
 
     .memory-box[data-level="high"] .memory-box-value {
         color: #ffe4e6;
+    }
+    
+    /* Giao diện nút chuyển đổi - Kế thừa phong cách memory-box */
+    .view-toggle-btn {
+        position: fixed;
+        left: 50%;
+        top: 4rem; /* Đẩy xuống thấp hơn memory-box */
+        transform: translateX(-50%);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        min-height: 2rem;
+        padding: 0.35rem 1rem;
+        box-sizing: border-box;
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        border-radius: 999px;
+        background:
+            radial-gradient(circle at 10% 0%, rgba(45, 212, 191, 0.18), transparent 40%),
+            linear-gradient(135deg, rgba(15, 23, 42, 0.94), rgba(2, 6, 23, 0.82));
+        color: #ecfeff;
+        box-shadow: 0 14px 32px rgba(2, 6, 23, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+        backdrop-filter: blur(12px);
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 0.78rem;
+        letter-spacing: 0.05em;
+        cursor: pointer; /* Bắt buộc có để hiển thị con trỏ chuột bấm */
+        z-index: 9999;
+        transition: all 0.2s ease;
+    }
+
+    /* Hiệu ứng khi di chuột vào (sáng lên và hơi phóng to) */
+    .view-toggle-btn:hover {
+        background:
+            radial-gradient(circle at 10% 0%, rgba(45, 212, 191, 0.25), transparent 40%),
+            linear-gradient(135deg, rgba(30, 41, 59, 0.94), rgba(2, 6, 23, 0.9));
+        transform: translateX(-50%) scale(1.02);
+        border-color: rgba(148, 163, 184, 0.3);
+    }
+
+    /* Định dạng cho chữ Label (VIEW) */
+    .view-toggle-label {
+        color: rgba(203, 213, 225, 0.72);
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.11em;
+    }
+
+    /* Định dạng cho chữ Giá trị (SPLIT / LEFT / RIGHT) */
+    .view-toggle-value {
+        font-weight: 900;
+        text-transform: uppercase;
     }
 
     #toggle-button {
@@ -1189,9 +1230,17 @@
 <body>
     <input type="hidden" th:value="${generalFileId}" id="general-file-id" />
     <input type="hidden" th:value="${url}" id="url-download-file" />
-    <div id="object-explorer" class="left-panel">
+    <!-- Bảng menu Object Explorer -->
+    <div id="object-explorer" class="collapsed" style="position: absolute; top: 0; left: 0; height: 100vh; z-index: 10;">
+      <!-- Nội dung menu -->
     </div>
-    <div id="container"></div>
+
+    <div id="viewer-wrapper" style="position: absolute; top: 0; display: flex; height: 100vh; width: 100vw;">
+        <div id="container-left" style="flex: 1; position: relative;"></div>
+        <!-- Thêm id="divider" vào đây -->
+        <div id="divider" style="width: 2px; background-color: #333; cursor: col-resize;"></div>
+        <div id="container-right" style="flex: 1; position: relative;"></div>
+    </div>
 </body>
 
 </html>
